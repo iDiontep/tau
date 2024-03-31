@@ -13,7 +13,7 @@
 .def tempL	  = R16				; registers
 .def tempH    = R17             ; 
 .def temp	  = R18				; 
-.def Counter  = R19
+.def Counter  = R19             ;
 .def Delay1   = R20;
 .def Delay2   = R21;counter for time delay
 .def Delay3   = R22;
