@@ -1,0 +1,52 @@
+clc
+clear all
+close all
+
+
+W1 = tf(7, [1 0]);
+W2 = tf(1, [0.1 1]);
+W3 = tf(1, [0.05 1]);
+ans = series(W1, W2);
+ans = series(ans, W3);
+% рассмотрим построение графика функции
+x = 1.5:0.01:5;
+qa = (15.28./x./x).*sqrt((x.*x)-(2.25));
+qa_ =-((22.91./x)./x); 
+f = -20 .*log10((1./x).*sqrt((15.28).^2.*(x.^2-2.25)+22.91.^2));
+f4h = - pi-atan(1.5./sqrt(x.*x-2.25));
+
+figure;
+
+plot(x, qa, 'LineWidth',2, 'Color', 'r');
+title('q(a)')
+yline(4.29);
+grid on;
+
+figure;
+plot(x, qa_, 'LineWidth',2, 'Color', 'r');
+title('q`(a)')
+yline(4.29);
+grid on;
+
+
+figure;
+bode(ans); 
+xline(-0.94);
+grid on;
+figure;
+subplot(2,1,1)
+plot(x, f, 'LineWidth',2, 'Color', 'r');
+yline(-17);
+title('20 lg⁡(W_L (jw))');
+grid on;
+% 
+subplot(2,1,2)
+plot(x, f4h, 'LineWidth',2, 'Color', 'r');
+title('arg⁡〖W_L (jw)〗');
+yline(-pi);
+grid on;
+
+
+
+
+% %  
