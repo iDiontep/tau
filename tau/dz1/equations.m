@@ -3,6 +3,7 @@ clear all
 close all
 
 
+figure;
 
 W = tf(7, [0.005 0.15 1 0]);
 % рассмотрим построение графика функции
@@ -13,21 +14,21 @@ f = -20 .*log10((1./x).^2.*sqrt((233.4.*(x.^2-2.25)+524.9)));
 f4h = - pi+atan(1.5./sqrt(x.*x-2.25));
 
 figure;
-
+subplot(2,1,1)
 plot(x, qa, 'LineWidth',2, 'Color', 'r');
 title('q(a)')
-yline(4.29);
+xline(6.08);
 grid on;
 
-figure;
+subplot(2,1,2)
 plot(x, qa_, 'LineWidth',2, 'Color', 'r');
 title('q`(a)')
-yline(4.29);
+xline(6.08);
 grid on;
 
 
 figure;
-bode(W); 
+bode(W);  
 xline(-0.94);
 grid on;
 figure;
