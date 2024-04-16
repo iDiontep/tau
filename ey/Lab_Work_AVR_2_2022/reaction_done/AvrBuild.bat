@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "D:\SM11\ionin\6sem\ey\Lab_Work_AVR_2_2022\reaction_done\labels.tmp" -fI -W+ie -C V2E -o "D:\SM11\ionin\6sem\ey\Lab_Work_AVR_2_2022\reaction_done\test_2.hex" -d "D:\SM11\ionin\6sem\ey\Lab_Work_AVR_2_2022\reaction_done\test_2.obj" -e "D:\SM11\ionin\6sem\ey\Lab_Work_AVR_2_2022\reaction_done\test_2.eep" -m "D:\SM11\ionin\6sem\ey\Lab_Work_AVR_2_2022\reaction_done\test_2.map" "D:\SM11\ionin\6sem\ey\Lab_Work_AVR_2_2022\reaction_done\reaction.asm"

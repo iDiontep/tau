@@ -1,0 +1,52 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.42</VERSION>
+ <DEVICE>ATmega16</DEVICE>
+ <WORKING_DIR>D:\Lab_work\Lab_Work_AVR_2_2022\reaction</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files\Atmel\AVR Tools\AvrAssembler\Appnotes</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <Init><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>116</LINE></Init>
+  <IN_INT0><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>267</LINE></IN_INT0>
+  <IN_T0ovf><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>358</LINE></IN_T0ovf>
+  <Init_B><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>124</LINE></Init_B>
+  <Init_C><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>129</LINE></Init_C>
+  <Init_D><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>132</LINE></Init_D>
+  <Init_T0><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>138</LINE></Init_T0>
+  <Init_R><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>148</LINE></Init_R>
+  <Start><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>160</LINE></Start>
+  <Display><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>204</LINE></Display>
+  <Rand_st><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>166</LINE></Rand_st>
+  <Rand_end><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>178</LINE></Rand_end>
+  <ex_displ><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>240</LINE></ex_displ>
+  <Out_disp><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>215</LINE></Out_disp>
+  <TABLE><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>246</LINE></TABLE>
+  <Cheat><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>320</LINE></Cheat>
+  <shl3><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>288</LINE></shl3>
+  <Divide12><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>297</LINE></Divide12>
+  <DoneDividing><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>306</LINE></DoneDividing>
+  <digitConvert><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>328</LINE></digitConvert>
+  <ex_INT0><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>309</LINE></ex_INT0>
+  <FindHundreds><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>333</LINE></FindHundreds>
+  <FindTens><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>340</LINE></FindTens>
+  <FindOnes><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>346</LINE></FindOnes>
+  <LEDon><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>375</LINE></LEDon>
+  <ex_T0ovf><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>370</LINE></ex_T0ovf>
+  <Start_m><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>366</LINE></Start_m>
+  <out_HI><FILE>D:\Lab_work\Lab_Work_AVR_2_2022\reaction\reaction.asm</FILE><LINE>379</LINE></out_HI>
+ </LABELS>
+</ASSEMBLER_INFO>
