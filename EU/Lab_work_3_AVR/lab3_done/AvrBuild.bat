@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "D:\SM61\Lab_work_3_AVR\Bochkarev\firsttry\labels.tmp" -fI -W+ie -C V2E -o "D:\SM61\Lab_work_3_AVR\Bochkarev\firsttry\firsttry.hex" -d "D:\SM61\Lab_work_3_AVR\Bochkarev\firsttry\firsttry.obj" -e "D:\SM61\Lab_work_3_AVR\Bochkarev\firsttry\firsttry.eep" -m "D:\SM61\Lab_work_3_AVR\Bochkarev\firsttry\firsttry.map" "D:\SM61\Lab_work_3_AVR\Bochkarev\firsttry\firsttry.asm"

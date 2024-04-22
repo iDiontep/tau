@@ -1,0 +1,38 @@
+APRO v3.05
+Compiler : C++ Builder 3
+Operating System : Windows NT 6.1 Service Pack 1
+Device: COM3
+Time      Type      SubType       Data      OtherData
+--------  --------  ------------  --------  ---------
+0000.084  TrDatChg  Avail         00000001  
+0000.090  TrgHdAlc  Window        000908D4  
+0030.573  Dispatch  WriteCom      00000001  [01]
+0030.573  Dispatch  WriteCom      00000001  [AA]
+0030.573  Dispatch  WriteCom      00000001  U
+0030.573  Dispatch  WriteCom      00000001  [FF]
+0035.881  Dispatch  ReadCom       00000003  [00][FF][00]
+0035.881  Trigger   Avail         00000003  
+0214.826  Dispatch  WriteCom      00000001  [01]
+0214.826  Dispatch  WriteCom      00000001  [AA]
+0214.826  Dispatch  WriteCom      00000001  U
+0214.826  Dispatch  WriteCom      00000001  [FF]
+0236.396  Dispatch  ReadCom       00000002  [00][FF]
+0236.396  Trigger   Avail         00000002  
+0236.412  Dispatch  ReadCom       00000001  [00]
+0236.412  Trigger   Avail         00000001  
+0247.264  Dispatch  WriteCom      00000001  [01]
+0247.264  Dispatch  WriteCom      00000001  [20]
+0247.264  Dispatch  WriteCom      00000001  [1E]
+0247.264  Dispatch  WriteCom      00000001  [C0]
+0391.653  Dispatch  WriteCom      00000001  [01]
+0391.653  Dispatch  WriteCom      00000001  2
+0391.653  Dispatch  WriteCom      00000001  [0A]
+0391.653  Dispatch  WriteCom      00000001  [C2]
+0399.111  Dispatch  ReadCom       00000003  [00]>[C1]
+0399.111  Trigger   Avail         00000003  
+0447.752  Dispatch  WriteCom      00000001  [01]
+0447.752  Dispatch  WriteCom      00000001  2
+0447.752  Dispatch  WriteCom      00000001  [0A]
+0447.752  Dispatch  WriteCom      00000001  [C2]
+0454.715  Dispatch  ReadCom       00000003  [00]<[C3]
+0454.715  Trigger   Avail         00000003  

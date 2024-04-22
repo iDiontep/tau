@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "D:\SM11\ionin\6sem\EU\Lab_work_3_AVR\contr_UART\labels.tmp" -fI -W+ie -C V2E -o "D:\SM11\ionin\6sem\EU\Lab_work_3_AVR\contr_UART\contr_UART.hex" -d "D:\SM11\ionin\6sem\EU\Lab_work_3_AVR\contr_UART\contr_UART.obj" -e "D:\SM11\ionin\6sem\EU\Lab_work_3_AVR\contr_UART\contr_UART.eep" -m "D:\SM11\ionin\6sem\EU\Lab_work_3_AVR\contr_UART\contr_UART.map" "D:\SM11\ionin\6sem\EU\Lab_work_3_AVR\contr_UART\contr_UART.asm"
