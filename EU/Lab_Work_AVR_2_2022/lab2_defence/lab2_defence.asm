@@ -1,7 +1,7 @@
 ;*************************************
 ;* Designer        Ionin D.A..
-;* Version:        3.0
-;* Date            21.04.2024
+;* Version:        5.0
+;* Date            06.05.2024
 ;* Title:          Countert.asm
 ;* Device          ATmega16
 ;* Clock frequency: 8 MHz Crystal Resonator
@@ -13,24 +13,22 @@
 .def tempL	  = R16				; registers
 .def tempH    = R17             ; 
 .def temp	  = R18				; 
-.def Counter  = R15             ;
+.def Counter  = R19             ;
 .def Delay1   = R20;
 .def Delay2   = R21;counter for time delay
 .def Delay3   = R22;
 .def Delay4   = R23;
-.def Random	  = R24;
-.def CountX   = R14;
-
+.def timtime  = R24;
+.def RANDOM   = R25;
+.def CountX   = R26;
 ;***************** 
 ; Constants
 ;*****************
-.equ Val_del1=0xAB;0x80;time delay time
-.equ Val_del2=0x1A;0x38;
-.equ Val_del3=0xF2;0x05;(частота 8мГц,время задержки 2000 мс
-.equ Val_del4=0x9E
-.equ Val_del5=0x9E
-;5мсек.Количество циклов 
-;                  Хотч=6 222 222 222 (01 72 DF 35 56) <=>(1/8000000)*6*Хотч=2000 мсек) 
+;equ Val_del1=0xAB;0x80;time delay time
+;equ Val_del2=0x1A;0x38;
+;equ Val_del3=0xF2;0x05;(частота 8мГц,время задержки 2000 мс
+;equ Val_del4=0x9E;5мсек.Количество циклов 
+;                  Хотч=2666666667 (9EF21AAB) <=>(1/8000000)*6*Хотч=2000 мсек) 
 ;			   
 ;***********************************
 .cseg
@@ -95,30 +93,27 @@ Init_A:    	ldi temp, 0b11111111    ; Set PortA as outputs
     		ldi temp, 0b00000011    ; Set PB4 as input
     		out PORTA, temp
     
-Init_B:	ldi temp, 0b00000000    ; Set PortA as outputs
-    	out DDRB, temp
-    	ldi temp, 0b00010000    ; Enable pull-up for PB4
-    	out PORTB, temp
-
 Init_D:	ldi temp, 0b00000000    ; Set PortA as outputs
     	out DDRD, temp
-    	ldi temp, 0b00000100    ; Enable pull-up for PD2
+    	ldi temp, 0b00000100    ; Enable pull-up for PB4
     	out PORTD, temp
     
     	ldi Counter, 0x00 ; Initialize counter
+		ldi timtime, 0b00000100
+init_timer:
+		ldi temp, (1<<ISC01)
+		out MCUCR, temp;
+		ldi temp, (1<<INT0)
+		out GIMSK, temp;
+		sei
+		clr temp;
+
+
 
 MainLoop:
-   KeyIsPress:  
-	sbic  PinD, PD2				; Проверка нажатия кнопки
-    rjmp  KeyIsPress		    ; Если кнопка не нажата, то ожидать нажатия
-KeyIsRelease:  
-	sbis  PinD, PD2				; Проверка отпускания кнопки
-    rjmp  KeyIsRelease			; Если кнопка не отпущена, то ожидать отпускания
-DelayAfterPress:  
-	rcall Delay_DK	
-
-
-Podschet:
+    sbic PIND, 2       ; Check if button on PB4 is pressed
+    rjmp MainLoop      ; Button not pressed, continue loop
+MainCycle:
     inc Counter        ; Increment counter
 
     cpi Counter, 4  ; Check if counter equals 3
@@ -127,53 +122,29 @@ Podschet:
     ldi Counter, 0  ; Reset counter after reaching 3
 
 CheckCounter:
-Read:     ldi   ZL,TABLE*2;load start adress
+	      ldi   ZL,TABLE*2;load start adress
 	      ldi   ZH,0x00   ;таблицы в памяти программ (*2 - для байтовой 
 	      add   ZL,Counter;адресации)
 	      lpm   temp,Z    ;читаем семисегментный код значения Counter
-Write_A:  out   PORTA,temp;передаем на индикатор 
- 
-delay:  rcall delay_dk 
-;delay  rcall Rand_delay:
-Continue:
-KeyIsPressAgain:  
-	sbic  PinD, PD2				; Проверка нажатия кнопки
-    rjmp  Podschet		    ; Если кнопка не нажата, то ожидать нажатия
-KeyIsReleaseAgain:  
-	sbis  PinD, PD2				; Проверка отпускания кнопки
-    rjmp  KeyIsRelease			; Если кнопка не отпущена, то ожидать отпускания
-DelayAfterPressAgain:  
-	rcall Delay_DK	
-	rcall Rand_delay
-
+		  out   PORTA,temp;передаем на индикатор   
+delay_1:  rcall delay  ;задержка рандомом
+;	   
+Key_end:  sbis  PIND,2  ;проверка отпускания кнопки
+          rjmp  delay_1
+    	  sbic PIND, 2       ; Check if button on PB4 is pressed
+   		  rjmp MainCycle      ; Button not pressed, continue cycle
+delay_2:  rcall delay_DK 
+restart:
+	sbic PINB, 4;
+	rjmp restart;
+delay_3:  rcall delay_DK
+key_end_2:sbis  PinD,2  ;проверка отпускания кнопки
+          rjmp  key_end_2
 End_prog:
     rjmp MainLoop      ; Continue looping
 
 Delay:
-    ldi   Delay1,Val_del1;
-    ldi   Delay2,Val_del2 
-    ldi   Delay3,Val_del3 
-    ldi   Delay4,Val_del4    ; Load delay value
-delay_loop:
-        subi  Delay1,1; loop -6 counts
-        sbci  Delay2,0;
-	    sbci  Delay3,0;
-		sbci  Delay4,0;
-	    brcc  delay_loop
-End_delay:    ret
-
-Delay_DK: ldi   Delay1,0x40;загрузка констант
-          ldi   Delay2,0x1F
-          ldi   Delay3,0x00
-
-cycle:    subi  Delay1,1; Цикл - 6 тактов
-          sbci  Delay2,0
-	      sbci  Delay3,0
-	      brcc  cycle
-End_delay_DK: ret 
-
-Rand_delay:  
-		  mov    temp,Random;Вычисляем следующее случайное число 
+    mov    temp,Random;Вычисляем следующее случайное число 
           add    Random,temp;умножаем на 5 сложением
           add    Random,temp;случайное число в диапазоне(0-255)
           add    Random,temp
@@ -189,6 +160,7 @@ Rand_delay:
 		             
 	      subi   temp,-127;прибавляем случайное число (от 90 до 256)
 Rand_end: mov    CountX,temp
+	          
 
           ldi   temp,(1<<CS02)|(1<<CS00);частота TCNT0 Clk/1024,(CS02,CS01,CS00) установка предделителя таймера
   	      out   TCCR0,temp;включаем таймер
@@ -200,9 +172,19 @@ Rand_end: mov    CountX,temp
 	      out    TIFR,temp;сбрасываем флаг прерыв TOV0 (флаг прерыв. по переполнению) 
 
           sei             ;разрешаем прерывания
+end_ddelay: ret
 
-		  rjmp	 Continue	          
-		  ret
+Delay_DK: ldi   Delay1,0x40;загрузка констант
+          ldi   Delay2,0x1F
+          ldi   Delay3,0x00
+
+cycle:    subi  Delay1,1; Цикл - 6 тактов
+          sbci  Delay2,0
+	      sbci  Delay3,0
+	      brcc  cycle
+End_delay_DK: ret 
+
+	
 ;------- Таблица перекодировки символов
 TABLE:    .db   0b00000011,0b00000110; коды "0","1"
           .db   0b00001100,0b00000000; коды "2","3"
