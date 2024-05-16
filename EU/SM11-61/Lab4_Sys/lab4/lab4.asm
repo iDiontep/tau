@@ -35,16 +35,16 @@
 ;*******************
 .def  temp_L     =R16
 .def  temp_H     =R17
-.def  Number     =R18 
+.def  Number     =R18 ;номер канала
 .def  Hundreds   =R19;
 .def  Tens       =R20
 .def  Ones       =R21
-.def  Disp_Numb  =R22
+.def  Disp_Numb  =R22 ;
 .def  Disp_Count =R23
 .def  Time       =R24;счетчик переполн.Т0(1024*255/8000000*Xotc=1cek(Xotc=30)
-.def  ADC_h      =R3
+.def  ADC_h      =R3 ; регистры для выполнение арифметических операций
 .def  ADC_l      =R4
-.def  cou_ADC    =R25
+.def  cou_ADC    =R25; счетчик для преобразований
 ;-------------------
 .def  byte_fl    =R9
 ;-------------------
@@ -54,7 +54,7 @@
 ;******************* 
 ; Constants
 ;*******************
-.equ   Val_dispCount=50
+.equ   Val_dispCount=50; константа для дисплея
 .equ   Val_N_ADC    =4;4;колич-во преобразований АЦП(1,2,4,8.16..)
 .equ   VAL_time =30;30 переполнений соответствуют 1 сек
 ;***************************************
@@ -91,7 +91,7 @@ reti
 .org UTXCaddr; =$01A	;UART Transmit Complete Interrupt Vector Address
 reti
 .org ADCCaddr; =$01C	;ADC Interrupt Vector Address
-rjmp  IN_ADC
+rjmp  IN_ADC;завершение преобразование по адп и ацп
 .org ERDYaddr; =$01E	;EEPROM Interrupt Vector Address
 reti
 .org ACIaddr;  =$020	;Analog Comparator Interrupt Vector Address
@@ -111,7 +111,7 @@ Init:
 	   out   SPL, temp_L;Указатель стека 
 	   ldi   temp_L,HIGH(RAMEND)
 	   out   SPH,temp_L
-	   ; ------Инициализация портов В/B
+; ------Инициализация портов В/B
 ;
 	   ldi   temp_L,0b11111111;(PB1-PB7)-выходы,
        out   DDRB,temp_L
@@ -175,17 +175,17 @@ izm_Nkan:
 	   		bld    Byte_fl,Disab_Key; бит запрещ. опроса кнопки "Выбор канала" от дребезга
 			
 			clt
-            sbrs  byte_fl,F_iz_kan
+            sbrs  byte_fl,F_iz_kan;если нажата - загружаем нулевое значение
 		    set
             bld   byte_fl,F_iz_kan
 ;изменить № канала АЦП
-            in     temp_L,ADMUX
+            in     temp_L,ADMUX; проверяем возможность изменения канала
             andi   temp_L,0b11100000
-ch_mux_ADC: sbrs  byte_fl,F_iz_kan
+ch_mux_ADC: sbrs  byte_fl,F_iz_kan; изменяем флаг изменения канала
             rjmp  kanN2
 			ldi   Number,3;3-й канал 
             ori   temp_L,(1<<MUX0)|(1<<MUX1)
-ex_c_mux:	out   ADMUX,temp_L
+ex_c_mux:	out   ADMUX,temp_L; запускаем таймер- счетчик
             ldi   temp_L,(1<<CS02)|(1<<CS00);частота TCNT0 Clk/1024,(CS02,CS01,CS00) - 101
             out   TCCR0,temp_L
 	        ldi   temp_L,(1<<TOIE0);TOIE0-Timer/Counter0 Overflow Interrupt Enable
@@ -197,9 +197,9 @@ kanN2:      ldi   Number,0;0-й канал
 ;**************************************************
 ; Подпрограмма запуска преобразования АЦП
 ;**************************************************
-start_ADC:  ldi   temp_L,(1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1);ч-та преобр.64(125кГц)
-			out   ADCSR,temp_L
-            ldi   temp_L,(1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADSC);
+start_ADC:  ldi   temp_L,(1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1);все остальные биты в нуле 
+			out   ADCSR,temp_L;					ч-та преобр.64(125кГц)
+            ldi   temp_L,(1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADSC);в целом верхнюю программу можно не делать
 			out   ADCSR,temp_L
 			ret 
 ;**************************************************
@@ -283,7 +283,7 @@ out_date:  add   ZL,temp_L   ;адресации)
 		   ;
 ex_displ:  ret
 ;________________________________
-sym_toch:  ldi   ZL,low(TABLE1*2);загружаем адрес начала 
+sym_toch:  ldi   ZL,low(TABLE1*2);загружаем адрес начала эта таблица с точкой
 	       ldi   ZH,high(TABLE1*2);таблицы в памяти программ (*2 - для байтовой адрес.
            rjmp  out_date
 ;==================================================
