@@ -1,6 +1,5 @@
-% Load Constants of the Project
+% загрузка констант в проект
 
-Constants
 ObserverParams
 NonLogicMembershipFunctions
 LQRParams
