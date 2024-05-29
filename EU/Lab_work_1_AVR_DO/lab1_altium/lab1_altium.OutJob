@@ -2,9 +2,9 @@
 Version=1.0
 
 [PublishSettings]
-OutputFilePath2=C:\Users\s20di\Videos\workspace\6sem\ey\Lab_work_1_AVR_DO\lab1_altium\.PDF
+OutputFilePath2=\\Mac\Home\workspace\6sem\EU\Lab_work_1_AVR_DO\lab1_altium\.PDF
 ReleaseManaged2=0
-OutputBasePath2=C:\Users\s20di\Videos\workspace\6sem\ey\Lab_work_1_AVR_DO\lab1_altium\
+OutputBasePath2=\\Mac\Home\workspace\6sem\EU\Lab_work_1_AVR_DO\lab1_altium\
 OutputPathMedia2=
 OutputPathMediaValue2=
 OutputPathOutputer2=[Output Type]
@@ -81,7 +81,7 @@ WmvVideoCodecName4=Windows Media Video V7
 WmvQuality4=80
 
 [GeneratedFilesSettings]
-RelativeOutputPath2=C:\Users\s20di\Videos\workspace\6sem\ey\Lab_work_1_AVR_DO\lab1_altium\.PDF
+RelativeOutputPath2=\\Mac\Home\workspace\6sem\EU\Lab_work_1_AVR_DO\lab1_altium\.PDF
 OpenOutputs2=1
 RelativeOutputPath3=
 OpenOutputs3=1
